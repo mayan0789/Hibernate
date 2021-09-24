@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 21 Sep, 2021 5:13:02 PM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="in.co.rays.inherit2.Payment2" table="PAYMENT2">
+        <id name="pay_id" type="int" column ="PAY_ID" >
+       
+            <generator class="native" />
+        </id>
+      
+        <property name="name" type="java.lang.String">
+            <column name="NAME" />
+        </property>
+        <property name="amount" type="int">
+            <column name="AMOUNT" />
+        </property>
+        
+         <joined-subclass name="in.co.rays.inherit2.CreditCard2" table="Cred_Card">
+        <key column="PAY_ID"></key>
+         <property name="ccType"  column="CCMODE"></property>
+        </joined-subclass>
+        
+           <joined-subclass name="in.co.rays.inherit2.Cash2" table="Cash">
+        <key column="PAY_ID"></key>
+            </joined-subclass>
+        
+           <joined-subclass name="in.co.rays.inherit2.Cheque2" table="Cheque">
+        <key column="PAY_ID"></key>
+         <property name="cheq_no" column="Cheq_no"></property>
+                  <property name="bankName" column="BankName"></property>
+         
+        </joined-subclass>
+          </class>
+           
+</hibernate-mapping>
